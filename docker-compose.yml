@@ -1,0 +1,14 @@
+version: "2"
+services:
+  php:
+    build: .
+    volumes:
+      - ./www/index.php:/var/www/index.php
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile_nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - php
